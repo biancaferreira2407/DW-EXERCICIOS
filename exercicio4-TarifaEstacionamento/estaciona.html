@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarifa de Estacionamento</title>
+     <link rel="stylesheet" href="estaciona.css">
+</head>
+<body>
+
+    <main>
+    
+        <section>
+            <h1>Calculadora de Tarifa</h1>
+
+            <label for="hora">Horas estacionadas</label>
+            <input type="number" id="hora" min="1" class="dois-digitos"><br><br>
+
+            <label for="veiculo">Tamanho do Veículo</label>
+            <select id="veiculo" >
+                <option value="grande">Veículo Grande</option>
+                <option value="pequeno">Veículo Pequeno</option>
+            </select><br><br>
+
+            <label>
+                Cliente Frequente
+                <input type="checkbox" id="cliente">
+            </label><br><br>
+        
+            <button id="btn-calc" onclick="fcalc()">calcular</button>
+            <div class="resultado">
+                <strong>Valor total a pagar: R$ </strong>
+                <span id="resp">...</span>
+            </div>
+        </section>
+    </main>
+    <footer id ="footer">
+
+         <span id="mensagem">Preencha os valores e calcule</span>
+
+    </footer>
+     <script src="estaciona.js"></script>
+</body>
+</html>

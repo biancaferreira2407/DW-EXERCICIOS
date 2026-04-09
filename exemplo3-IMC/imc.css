@@ -1,0 +1,129 @@
+/* Definição da paleta de cores */
+:root {
+    --primary-blue: #00c3ff;
+    /* Laranja moderno */
+    --light-rosa: #ffc4f7;
+    /* Amarelo bem suave para fundos/destaques */
+    --white: #FFFFFF;
+    --bg-color: #FAFAFA;
+    /* Fundo da página quase branco */
+    --text-dark: #333333;
+    --error-bg: red;
+    /* Requisito: fundo vermelho */
+    --error-text: white;
+    /* Requisito: texto branco */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--light-rosa);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    width: 100%;
+    background: linear-gradient(135deg, #f843f2, var(--primary-blue));
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem 1rem;
+    flex: 1;
+}
+
+/* Estilos dos Cartões (Seções) */
+.calculator-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border-top: 4px solid var(--primary-blue);
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
+}
+
+button {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #422995;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Tratamento de Erro (Requisito Específico) */
+footer{
+     background-color:brown;
+    color: var(--white);
+     text-align: center;
+    padding: 2rem 1rem;
+    width: 100%;
+
+}
+#telspan{
+     background-color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border-top: 4px solid var(--primary-blue);
+}
+.erro {
+    background-color: red;
+    color: white;
+}
+
+
+

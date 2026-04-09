@@ -1,0 +1,66 @@
+body {
+  background-color: #a7cbf4; /* azul bic */
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* MAIN centralizado */
+main {
+  display: flex;
+  flex-direction: column;
+;  /* centraliza vertical */
+  height: 100vh;
+  color: rgb(0, 0, 0); 
+   flex: 1;/* letras brancas */
+}
+
+/* Inputs brancos */
+input {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+/* Footer azul marinho */
+footer {
+  background-color: #dc0042;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  padding: 2rem 1rem;
+}
+#slect {
+  /* azul mais claro que o azul bic */
+  color: rgb(0, 0, 0); /* cor do texto selecionado */
+ padding: 2rem 1rem;
+ border-radius: 10px;
+   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif9 ;
+
+}
+header {
+  background-color: #0050a0;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif9 ;
+}
+#tl{
+    background-color: #ffffff; /* azul mais claro que o azul bic */
+  color: rgb(0, 0, 0); /* cor do texto selecionado */
+ padding: 1rem 1rem;
+ border-radius: 10px;
+ margin: 10px 20px 5px 0;
+}
+#bt{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif9 ;
+ padding: 1rem 2rem;
+ margin: 10px 20px 5px 0;
+ background-color: cornflowerblue;
+ color:#ffffff
+}

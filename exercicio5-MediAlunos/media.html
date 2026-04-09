@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Média de Aproveitamento
+</title>
+     <link rel="stylesheet" href="media.css">
+</head>
+<body>
+       <header>
+        Média de Aproveitamento
+       </header>
+    <main>
+        <section id="slect">
+    
+            <label for="RA">RA</label><br>
+            <input type="number" id="RA" placeholder="insira o seu RA"><br><br>
+
+            <label for="nome">Nome</label><br>
+            <input type="text" id="nome" placeholder="nome sobrenome"><br><br>
+
+
+            <h3>Notas bimestrais</h3>
+
+            <label for="i" id="labelid">1° Bimestre</label><br>
+            <input type="number" id="i" placeholder="N1"><br><br>
+
+            <label for="ii" id="labelid">2° Bimestre</label><br>
+            <input type="number" id="ii" placeholder="N2"><br><br>
+
+            <label for="iii" id="labelid">3° Bimestre</label><br>
+            <input type="number" id="iii" placeholder="N3"><br><br>
+
+            <label for="iv" id="labelid">4° Bimestre</label><br>
+            <input type="number" id="iv" placeholder="N4"><br><br>
+
+            <label for="me" id="labelid">Média dos exercícios</label><br>
+            <input type="number" id="me"><br><br>
+            <input type="button" id ="bt" value="verificar" onclick="fcalc()">
+    
+             <div class="resultado" id="tl">
+             <p><strong>RA: </strong> <span id="spanRA">*******</span><br>
+                <p><strong>Nome: </strong> <span id="spanNom"></span><br>
+                <span id="spanNotas">...</span><br>
+                <p><strong>Média dos exercícios: </strong> <span id="spanME">0</span><br>
+                    <p><strong>Conceito: </strong> <span id="spanC"></span><br>
+                        <span id="spanS">...</span><br>
+                        <p><strong>Média: </strong> <span id="spanMed">0</span><br>
+                        </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <span id="mensagem">Preencha os valores e calcule</span>
+    </footer>
+
+
+      <script src="media.js"></script>
+</body>
+</html>
