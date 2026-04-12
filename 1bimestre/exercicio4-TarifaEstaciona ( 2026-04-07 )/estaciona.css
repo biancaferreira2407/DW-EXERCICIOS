@@ -1,10 +1,10 @@
 :root{
-    --azul-escuro: #1f1078;
+    --azul-escuro: #781e10;
     --branco: #ffffff;
     --cinza: #f3f4f6;
     --vermelho: #dc2626;
-     --azul-claro: #4462a2;
-     --azulzinho: #c6f5ff;
+     --azul-claro: #e66767;
+     --azulzinho: #fdcfe2;
    
 }
 
@@ -12,7 +12,7 @@ body {
     font-family:Georgia, 'Times New Roman', Times, serif;
     margin: 0;
     padding: 0;
-    background-image: url("imagemPul.jpeg");
+    background-image: url("imagemVermelho.jpeg");
     background-size: cover;       
     background-position: center;  
     background-repeat: no-repeat;
@@ -87,12 +87,12 @@ input[type="checkbox"] {
     transform: translateY(2px);
 }
 input[type="checkbox"]:focus {
-    background-color: #c2a4f3;
+    background-color: #f3a4db;
     border-color: var(--azul-escuro);
 }
 
 button:hover {
-    background-color: #6b39bb;
+    background-color: #bb3957;
 }
 
 .resultado {
