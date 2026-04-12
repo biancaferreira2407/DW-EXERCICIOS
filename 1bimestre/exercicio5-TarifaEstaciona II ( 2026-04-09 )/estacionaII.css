@@ -1,0 +1,120 @@
+:root{
+    --azul-escuro: #1f1078;
+    --branco: #ffffff;
+    --cinza: #f3f4f6;
+    --vermelho: #dc2626;
+     --azul-claro: #4462a2;
+     --azulzinho: #c6f5ff;
+   
+}
+
+body {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("imagemPul.jpeg");
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+section {
+    background: var(--cinza);
+    padding: 60px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="number"]:focus {
+    background-color:var(--azulzinho);
+    border-color: var(--azul-escuro);
+}
+
+input[type="number"].dois-digitos {
+    width: 6ch;
+    text-align: center; 
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: var(--azul-claro);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+select {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+}
+
+select:hover {
+    background-color:var(--azulzinho);
+}
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px; /* deixa mais arredondado */
+    cursor: pointer;
+    transform: translateY(2px);
+}
+input[type="checkbox"]:focus {
+    background-color: #c2a4f3;
+    border-color: var(--azul-escuro);
+}
+
+button:hover {
+    background-color: #6b39bb;
+}
+
+.resultado {
+    margin-top: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+}
+
+footer {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cinza);
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+footer.erro {
+    background-color: var(--vermelho);
+    color: white;
+}
+
