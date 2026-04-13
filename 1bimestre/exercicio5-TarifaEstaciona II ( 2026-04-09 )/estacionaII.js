@@ -21,17 +21,18 @@ function fcalc(){
 
             valorfixo = (60 * (h24)) + (2.5 * h24 )
         } 
-    }else{
-        if(cliente.checked){
-            descClient = 0.95;
-        }
+    }
 
-        if(veiculo === 'grande'){
-            acressCarro = 1.25;
-        }  
+    if(cliente.checked){
+        descClient = 0.95;
+    }
+
+    if(veiculo === 'grande'){            
+        acressCarro = 1.25;
+    }  
         
        
-    }
+    
     let valor = (valorfixo * acressCarro) * descClient;  
     
 
