@@ -1,7 +1,7 @@
 function fcalc(){
     let h1 = new Date(document.getElementById("datahoraI").value);
     let hF = new Date(document.getElementById("datahoraF").value);
-    let veiculo = document.getElementById("veiculo").value;
+    let veiculo = document.getElementById("veiculo");
     let cliente = document.getElementById("cliente");
     let footer = document.getElementById("footer");
     let mensagem = document.getElementById("mensagem");
@@ -27,7 +27,7 @@ function fcalc(){
         descClient = 0.95;
     }
 
-    if(veiculo === 'grande'){            
+    if(veiculo.checked){            
         acressCarro = 1.25;
     }  
         
