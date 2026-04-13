@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarifa de Estacionamento</title>
-     <link rel="stylesheet" href="estaciona.css">
+     <link rel="stylesheet" href="estacionaII.css">
 </head>
 <body>
 
@@ -13,8 +13,14 @@
         <section>
             <h1>Calculadora de Tarifa</h1>
 
-            <label for="hora">Horas estacionadas</label>
-            <input type="number" id="hora" min="1" class="dois-digitos"><br><br>
+            <label for="datahotaI">Hora estacionada</label>
+            <input type="datetime-local" id="datahoraI" 
+            min="2026-01-01T00:00" max="2026-12-31T23:59"><br>
+            
+            <label for="datahotaF">Hora de saída</label>
+            <input type="datetime-local" id="datahoraF" 
+            min="2026-01-01T00:00" max="2026-12-31T23:59"><br><br>
+
 
             <label for="veiculo">Tamanho do Veículo</label>
             <select id="veiculo" >
@@ -39,6 +45,6 @@
          <span id="mensagem">Preencha os valores e calcule</span>
 
     </footer>
-     <script src="estaciona.js"></script>
+     <script src="estacionaII.js"></script>
 </body>
 </html>

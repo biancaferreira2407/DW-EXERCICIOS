@@ -1,10 +1,10 @@
 :root{
-    --azul-escuro: #1f1078;
+    --verde-escuro: #0e542a;
     --branco: #ffffff;
-    --cinza: #f3f4f6;
+    --verde-de-fundo: #ddffd9;
     --vermelho: #dc2626;
-     --azul-claro: #4462a2;
-     --azulzinho: #c6f5ff;
+     --verde-claro: #44a268;
+     --verdezinho: #c6fff1;
    
 }
 
@@ -12,7 +12,7 @@ body {
     font-family:Georgia, 'Times New Roman', Times, serif;
     margin: 0;
     padding: 0;
-    background-image: url("imagemPul.jpeg");
+    background-image: url("imagemVerde.jpeg");
     background-size: cover;       
     background-position: center;  
     background-repeat: no-repeat;
@@ -25,7 +25,7 @@ main {
 }
 
 section {
-    background: var(--cinza);
+    background: var(--verde-de-fundo);
     padding: 60px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -40,8 +40,8 @@ label {
 }
 
 input[type="number"]:focus {
-    background-color:var(--azulzinho);
-    border-color: var(--azul-escuro);
+    background-color:var(--verdezinho);
+    border-color: var(--verde-escuro);
 }
 
 input[type="number"].dois-digitos {
@@ -59,7 +59,7 @@ button {
     width: 100%;
     margin-top: 15px;
     padding: 10px;
-    background-color: var(--azul-claro);
+    background-color: var(--verde-claro);
     color: white;
     border: none;
     border-radius: 8px;
@@ -76,23 +76,24 @@ select {
 }
 
 select:hover {
-    background-color:var(--azulzinho);
+    background-color:var(--verdezinho);
 }
 
 input[type="checkbox"] {
     width: 15px;
     height: 15px;
-    border-radius: 15px; /* deixa mais arredondado */
+    border-radius: 15px;
     cursor: pointer;
     transform: translateY(2px);
+    accent-color: var(--verde-escuro)
 }
 input[type="checkbox"]:focus {
-    background-color: #c2a4f3;
-    border-color: var(--azul-escuro);
+    background-color: #a4f3e3;
+    border-color: var(--verde-escuro);
 }
 
 button:hover {
-    background-color: #6b39bb;
+    background-color: #39bb7a;
 }
 
 .resultado {
@@ -107,7 +108,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--cinza);
+    background-color: var(--verde-de-fundo);
     color: black;
     font-weight: bold;
     transition: 0.3s;

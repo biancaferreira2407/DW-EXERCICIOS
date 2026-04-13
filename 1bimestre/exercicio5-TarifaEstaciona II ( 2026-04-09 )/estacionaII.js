@@ -1,12 +1,14 @@
 function fcalc(){
-    let hora = parseInt(document.getElementById("hora").value);
+    let h1 = new Date(document.getElementById("datahoraI").value);
+    let hF = new Date(document.getElementById("datahoraF").value);
     let veiculo = document.getElementById("veiculo").value;
     let cliente = document.getElementById("cliente");
     let footer = document.getElementById("footer");
     let mensagem = document.getElementById("mensagem");
-    let valorfixo = 5 + (2.5 * (hora - 1));
-
     
+    let hora = Math.ceil((hF - h1)/(1000*60*60))
+
+    let valorfixo = 5 + (2.5 * (hora - 1));
 
     let acressCarro = 1;
     let descClient = 1;
