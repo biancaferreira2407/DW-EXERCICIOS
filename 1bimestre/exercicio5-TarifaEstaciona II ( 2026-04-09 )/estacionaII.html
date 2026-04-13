@@ -22,15 +22,14 @@
             min="2026-01-01T00:00" max="2026-12-31T23:59"><br><br>
 
 
-            <label for="veiculo">Tamanho do Veículo</label>
-            <select id="veiculo" >
-                <option value="grande">Veículo Grande</option>
-                <option value="pequeno">Veículo Pequeno</option>
-            </select><br><br>
+            <label>
+                <input type="checkbox" id="veiculo">
+                Veículo de grande porte( adiciona 25% )
+            </label><br><br>
 
             <label>
-                Cliente Frequente
-                <input type="checkbox" id="cliente">
+                <input type="checkbox" id="cliente"> 
+                Cliente Frequente( desconta 5%)
             </label><br><br>
         
             <button id="btn-calc" onclick="fcalc()">calcular</button>
