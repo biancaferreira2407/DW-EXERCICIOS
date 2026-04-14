@@ -90,6 +90,7 @@ button:hover {
     padding: 10px;
     background: white;
     border-radius: 8px;
+    text-align: center;
 }
 
 footer {
@@ -106,5 +107,10 @@ footer {
 footer.erro {
     background-color: var(--vermelho);
     color: white;
+}
+
+.tempCobrado{
+    color:rgb(118, 118, 118);
+    font-size: 0.8em;
 }
 
