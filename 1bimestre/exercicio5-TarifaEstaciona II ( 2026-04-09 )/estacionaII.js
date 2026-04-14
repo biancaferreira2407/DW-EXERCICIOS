@@ -46,6 +46,8 @@ function fcalc(){
 
    
 
+    let valorfixo = 5 + (2.5 * (hora - 1));    /* valor que será usado para o denconto ou acréssimo */
+   
     /* horas maiores que 24 */
     if(hora>=24){
         let h24 = Math.floor(hora/24)
@@ -57,7 +59,7 @@ function fcalc(){
         } 
     }
  
-    let valorfixo = 5 + (2.5 * (hora - 1));    /* valor que será usado para o denconto ou acréssimo */
+    
 
 
     /*calculo de acréssimo ou desconto*/
