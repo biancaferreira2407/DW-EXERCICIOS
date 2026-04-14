@@ -1,7 +1,7 @@
 function fcalc(){
     /* salvar inputs html */
-    let dataI = document.getElementById("datahoraI").value
-    let dataF = document.getElementById("datahoraF").value
+    let dataI = document.getElementById("datahoraI").value;
+    let dataF = document.getElementById("datahoraF").value;
     let h1 = new Date(dataI);
     let hF = new Date(dataF);
     let veiculo = document.getElementById("veiculo");
