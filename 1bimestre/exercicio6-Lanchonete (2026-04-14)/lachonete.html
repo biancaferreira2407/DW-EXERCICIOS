@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lanchonete.css">
+    <title>Lanchonete</title>
+</head>
+<body>
+    <h1>Lanchonete <br>   Dogão</h1>
+
+    <main>
+        <header>
+            <h2 class="cardapio">Cardápio</h2>
+        </header>
+
+        <section class="inputs-section">
+
+            <div class="cabecalho">
+                <span>dogão</span>
+                <span></span>
+                <span></span>
+                <span>quantidade</span>
+            </div><br>
+
+            <div class="linha">
+                <label>Cachorro quente básico</label>
+                <span class="traco"></span>
+                <label>R$ 22,00</label>
+                <input type="text" id="lancheB" class="quant">
+            </div><br>
+
+            <div class="linha">
+                <label>Cachorro quente duplo</label>
+                <span class="traco"></span>
+                <label>R$ 26,00</label>
+                <input type="text" id="lancheD" class="quant">
+            </div><br>
+
+            <div class="linha">
+                <label>X-salada</label>
+                <span class="traco"></span>
+                <label>R$ 29,00</label>
+                <input type="text" id="Xsalada" class="quant">
+            </div><br>
+
+            <div class="linha">
+                <label>Refrigerante 350 ml</label>
+                <span class="traco"></span>
+                <label>R$ 5,00</label>
+                <input type="text" id="refriML" class="quant">
+            </div><br>
+
+            <div class="linha">
+                <label>Refrigerante 1 L</label>
+                <span class="traco"></span>
+                <label>R$ 8,00</label>
+                <input type="text" id="refriL" class="quant">
+            </div>
+
+            <button class="btn-calcular" onclick="calcularCompra()">
+                Calcular compra
+            </button>
+
+        </section>
+
+        <br>
+
+        <section class="resultado-section">
+            <strong>Total :</strong>
+            <span id="resp">0.00</span>
+            <br>
+            <strong>Quantidade de itens :</strong>
+            <span id="respQ">0</span>
+        </section>
+    </main>
+
+    <script src="lanchonete.js"></script>
+</body>
+</html>

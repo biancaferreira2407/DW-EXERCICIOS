@@ -1,0 +1,135 @@
+/*título maior*/
+h1 {
+    position: absolute;
+    top: 10px;
+    left: 80px;
+    background-color: rgb(255, 162, 40);
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    letter-spacing: 2px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    color: rgb(255, 240, 240);
+}
+
+/*toda a tela*/
+body {
+    margin: 0;
+    height: 100vh;
+    background-image: url("Food.jpeg");
+
+
+    display: flex;                 
+    justify-content: center;       
+    align-items: center;           
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+/*telinha sobreosta*/
+main {
+    background: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 15px;
+    width: 750px;
+    background-color:rgb(244, 244, 244);
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/*título da telinha sobreosta*/
+header {
+    width: 100%;
+    text-align: center; 
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: #ff6918;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+/*todos os inputs*/
+.inputs-section {
+    width: 100%;
+}
+
+/*quantidade e dogão*/
+.cabecalho {
+    display: grid;
+    grid-template-columns: 170px 1fr 70px 85px;
+    font-weight: bold;
+    padding: 15px;
+
+    margin-bottom: 10px;
+    font-family: 'Anton', sans-serif;;
+}
+
+/*linha de cada item(input, label, span)*/
+.linha {
+    display: grid;
+    grid-template-columns: 180px 1fr 70px 80px;
+    align-items: center;
+    margin: 8px 10;
+}
+
+/*primeiro label de cada linha*/
+.linha label:first-child {
+    width: 300px;               
+}
+
+/*terceiro  elemento de cada linha*/
+.linha label:nth-child(3) {
+    width: 70px;
+    text-align: right;
+}
+
+/*traço que liga o produto ao preço*/
+.traco {
+    flex: 1;
+    border-bottom: 1px dotted black; 
+    margin: 0 10px;
+}
+
+/*ajusta os inputs de quantidade*/
+.quant {
+    width: 60px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+/*botão*/
+.btn-calcular {
+    margin-top: 20px;
+    margin-left: 200px;
+    width: 50%;
+    padding: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+
+    background: #f7d6a7;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+.btn-calcular:hover {
+    background: #fcccaa;
+}
+
+/*saída do resultado*/
+.resultado-section {
+     margin-top: 20px;
+
+    background: #ffffff;        
+    padding: 15px 20px;
+    border-radius: 10px;
+
+    width: 80%;
+
+    text-align: center;
+}
