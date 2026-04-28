@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Audiência</title>
+    <link rel="stylesheet" href="form.css"></head>
+<body>
+    <main>
+        <header>
+            <h1>Registrar Autorização</h1>
+        </header>
+        
+        <section>
+            <form action="autorizacao.html" method="GET" onsubmit="return validarFormulario()">
+                <div class="campo">
+                    <label for="nomeA">Nome Do Atleta:</label>
+                    <input type="text" id="nomeA" name="nomeA" required>
+                </div>
+
+                <div class="campo">
+                    <label for="cpfA">CPF:</label>
+                    <input type="text" id="cpfA" name="cpfA" required>
+                </div>
+
+                <div class="campo">
+                    <label for="idade">Idade Do Atleta:</label>
+                    <input type="text" id="idade" name="idade" maxlength="2" inputmode="numeric" required>
+                </div>
+
+                <div class="campo">
+                    <label for="nomeR">Nome Do Responsável:</label>
+                    <input type="text" id="nomeR" name="nomeR" required>
+                </div>
+
+                <div class="campo">
+                    <label for="cidadeP">Cidade De Partida:</label>
+                    <input type="text" id="cidadeP" name="cidadeP" required>
+                </div>
+
+                <div class="campo">
+                    <label for="cidadeD">Cidade De Destino:</label>
+                    <input type="text" id="cidadeD" name="cidadeD" required>
+                </div>
+
+                <div class="campo">
+                    <select id="modal" name="modal">
+                        <option>Vôlei</option>
+                        <option>Futebol</option>
+                        <option>Natação</option>
+                    </select>
+                </div>
+
+                <input type="hidden" id="categoria" name="categoria">
+
+                <button type="submit">Gerar Documento Oficial</button>
+            </form>
+        </section>
+    </main>
+<script>
+    function validarFormulario(){
+        let idade = document.getElementById("idade").value;
+        let modal = document.getElementById("modal").value;
+        let categoria;
+
+        if(modal!="Vôlei" && modal!="Futebol" && modal!="Natação"){
+            return false;
+        }
+
+        if(idade > 18 || idade < 7){
+            alert("Não pode competir, pois o Torneio Juvenil é limitado a pessoas de 7 a 18 anos de idade");
+            return false;
+        }
+
+        if(idade >= 14){
+            categoria = "Adolescente";
+        }else if(idade >= 12){
+            categoria = "Pré-Adolescente";
+        }else{
+            categoria = "Infantil";
+        }
+
+        document.getElementById("categoria").value = categoria;
+
+        return true;
+    }
+    document.getElementById("idade").addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+    document.getElementById("idade").addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, '').slice(0, 2);
+    });
+
+
+    document.getElementById("cpfA").addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+    document.getElementById("cpfA").addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, '').slice(0, 11);
+    });
+
+    document.getElementById("nomeA").addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+    });
+
+    document.getElementById("nomeR").addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+    });
+
+    
+    document.getElementById("cidadeP").addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+    });
+
+    document.getElementById("cidadeD").addEventListener("input", function () {
+        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+    });
+    </script>
+</body>
+</html>
