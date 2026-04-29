@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Audiência</title>
-    <link rel="stylesheet" href="form.css"></head>
+    <link rel="stylesheet" href="form.css">
+</head>
+
 <body>
     <main>
         <header>
             <h1>Registrar Autorização</h1>
         </header>
-        
+
         <section>
             <form action="autorizacao.html" method="GET" onsubmit="return validarFormulario()">
+
                 <div class="campo">
-                    <label for="nomeA">Nome Do Atleta:</label>
-                    <input type="text" id="nomeA" name="nomeA" required>
+                    <label>Nome do Atleta:</label><br>
+                    <input type="text" id="nomeA" name="nomeA" placeholder="Nome completo" required>
+                    <small class="erro" id="erroNomeA"></small>
                 </div>
 
                 <div class="campo">
-                    <label for="cpfA">CPF:</label>
-                    <input type="text" id="cpfA" name="cpfA" required>
+                    <label>CPF:</label><br>
+                    <input type="text" id="cpfA" name="cpfA" placeholder="Somente números" required>
                 </div>
 
                 <div class="campo">
-                    <label for="idade">Idade Do Atleta:</label>
-                    <input type="text" id="idade" name="idade" maxlength="2" inputmode="numeric" required>
+                    <label>Idade:</label><br>
+                    <input type="text" id="idade" name="idade" maxlength="2" placeholder="De 7 a 18 anos" required>
+                    <small class="erro" id="erroIdade"></small>
                 </div>
 
                 <div class="campo">
-                    <label for="nomeR">Nome Do Responsável:</label>
-                    <input type="text" id="nomeR" name="nomeR" required>
+                    <label>Nome do Responsável:</label><br>
+                    <input type="text" id="nomeR" name="nomeR" placeholder="Nome completo" required>
+                    <small class="erro" id="erroNomeR"></small>
                 </div>
 
                 <div class="campo">
-                    <label for="cidadeP">Cidade De Partida:</label>
-                    <input type="text" id="cidadeP" name="cidadeP" required>
+                    <label>Cidade de Partida:</label><br>
+                    <input type="text" id="cidadeP" name="cidadeP" placeholder="nome da cidade" required>
                 </div>
 
                 <div class="campo">
-                    <label for="cidadeD">Cidade De Destino:</label>
-                    <input type="text" id="cidadeD" name="cidadeD" required>
+                    <label>Cidade de Destino:</label><br>
+                    <input type="text" id="cidadeD" name="cidadeD" placeholder="nome da cidade" required>
                 </div>
 
                 <div class="campo">
+                    <label>Modalidade:</label><br>
                     <select id="modal" name="modal">
                         <option>Vôlei</option>
                         <option>Futebol</option>
@@ -53,67 +61,102 @@
                 <input type="hidden" id="categoria" name="categoria">
 
                 <button type="submit">Gerar Documento Oficial</button>
+
             </form>
         </section>
     </main>
-<script>
-    function validarFormulario(){
-        let idade = document.getElementById("idade").value;
-        let modal = document.getElementById("modal").value;
-        let categoria;
 
-        if(modal!="Vôlei" && modal!="Futebol" && modal!="Natação"){
-            return false;
+    <script>
+        function validarFormulario() {
+
+            let valido = true;
+
+            // ===== NOME ATLETA =====
+            let nomeA = document.getElementById("nomeA");
+            let erroNomeA = document.getElementById("erroNomeA");
+            let partesA = nomeA.value.trim().split(/\s+/);
+
+            if (partesA.length < 2 || partesA[0].length < 2 || partesA[1].length < 2) {
+                erroNomeA.innerText = "Digite nome e sobrenome";
+                nomeA.classList.add("input-erro");
+                valido = false;
+            } else {
+                erroNomeA.innerText = "";
+                nomeA.classList.remove("input-erro");
+            }
+
+            // ===== NOME RESPONSÁVEL =====
+            let nomeR = document.getElementById("nomeR");
+            let erroNomeR = document.getElementById("erroNomeR");
+            let partesR = nomeR.value.trim().split(/\s+/);
+
+            if (partesR.length < 2 || partesR[0].length < 2 || partesR[1].length < 2) {
+                erroNomeR.innerText = "Digite nome e sobrenome";
+                nomeR.classList.add("input-erro");
+                valido = false;
+            } else {
+                erroNomeR.innerText = "";
+                nomeR.classList.remove("input-erro");
+            }
+
+            // ===== IDADE =====
+            let idadeInput = document.getElementById("idade");
+            let idade = parseInt(idadeInput.value);
+            let erroIdade = document.getElementById("erroIdade");
+
+            if (isNaN(idade) || idade < 7 || idade > 18) {
+                erroIdade.innerText = "Idade deve ser entre 7 e 18";
+                idadeInput.classList.add("input-erro");
+                valido = false;
+            } else {
+                erroIdade.innerText = "";
+                idadeInput.classList.remove("input-erro");
+            }
+
+            // ===== CATEGORIA =====
+            if (valido) {
+                let categoria;
+
+                if (idade >= 14) {
+                    categoria = "Adolescente";
+                } else if (idade >= 12) {
+                    categoria = "Pré-Adolescente";
+                } else {
+                    categoria = "Infantil";
+                }
+
+                document.getElementById("categoria").value = categoria;
+            }
+
+            return valido;
         }
 
-        if(idade > 18 || idade < 7){
-            alert("Não pode competir, pois o Torneio Juvenil é limitado a pessoas de 7 a 18 anos de idade");
-            return false;
+        // ===== BLOQUEIOS =====
+
+        // idade só número
+        document.getElementById("idade").addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, '').slice(0, 2);
+        });
+
+        // CPF só número (até 11)
+        document.getElementById("cpfA").addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, '').slice(0, 11);
+        });
+
+        // nomes só letras
+        function bloquearLetras(id) {
+            document.getElementById(id).addEventListener("input", function () {
+                this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+            });
         }
 
-        if(idade >= 14){
-            categoria = "Adolescente";
-        }else if(idade >= 12){
-            categoria = "Pré-Adolescente";
-        }else{
-            categoria = "Infantil";
-        }
+        bloquearLetras("nomeA");
+        bloquearLetras("nomeR");
+        bloquearLetras("cidadeP");
+        bloquearLetras("cidadeD");
 
-        document.getElementById("categoria").value = categoria;
-
-        return true;
-    }
-    document.getElementById("idade").addEventListener("input", function () {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-    document.getElementById("idade").addEventListener("input", function () {
-        this.value = this.value.replace(/\D/g, '').slice(0, 2);
-    });
-
-
-    document.getElementById("cpfA").addEventListener("input", function () {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-    document.getElementById("cpfA").addEventListener("input", function () {
-        this.value = this.value.replace(/\D/g, '').slice(0, 11);
-    });
-
-    document.getElementById("nomeA").addEventListener("input", function () {
-        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
-    });
-
-    document.getElementById("nomeR").addEventListener("input", function () {
-        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
-    });
-
-    
-    document.getElementById("cidadeP").addEventListener("input", function () {
-        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
-    });
-
-    document.getElementById("cidadeD").addEventListener("input", function () {
-        this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
-    });
     </script>
+
 </body>
+
 </html>

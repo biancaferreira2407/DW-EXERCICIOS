@@ -1,24 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Mandado Judicial</title>
     <style>
-        body { font-family: 'Times New Roman', serif; padding: 40px; background: #9b9b9b; }
-        article { border: 2px solid #333; padding: 40px; max-width: 700px; margin: auto;background: #ffffff; }
-        header { text-align: center;  margin-top: -15px;}
-        h1 { text-decoration: underline; font-size: 1.8rem; }
-        p { text-align: justify; line-height: 1.8; font-size: 1.1rem; }
-        .dado-preenchido { font-weight: bold; text-transform: uppercase; }
-        footer { margin-top: 60px; text-align: center; }
-        .linha { border-top: 1px solid #000; width: 250px; margin: 10px auto; }
-        img {max-width: 250px;}
-        h4{text-align: center;}
-        .ass{text-align: center;}
+        body {
+            font-family: 'Times New Roman', serif;
+            padding: 40px;
+            background: #9b9b9b;
+        }
 
+        article {
+            border: 2px solid #333;
+            padding: 40px;
+            max-width: 700px;
+            margin: auto;
+            background: #ffffff;
+        }
 
+        header {
+            text-align: center;
+            margin-top: -15px;
+        }
+
+        h1 {
+            text-decoration: underline;
+            font-size: 1.8rem;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .dado-preenchido {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .linha {
+            border-top: 1px solid #000;
+            width: 250px;
+            margin: 10px auto;
+        }
+
+        img {
+            max-width: 250px;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        .ass {
+            text-align: center;
+        }
     </style>
 </head>
+
 <body>
     <article>
         <header>
@@ -27,25 +73,25 @@
 
         <section id="conteudo-documento">
             <p>
-                Pelo presente edital, O Responsável <span id="resNomeR" class="dado-preenchido"></span> autoriza 
-                o(a) aluno(a) <span id="resNomeA" class="dado-preenchido"></span>, 
+                Pelo presente edital, O Responsável <span id="resNomeR" class="dado-preenchido"></span> autoriza
+                o(a) aluno(a) <span id="resNomeA" class="dado-preenchido"></span>,
                 portador(a) do CPF <span id="resCpfA" class="dado-preenchido"></span>,
                 que apresenta <span id="resIdade" class="dado-preenchido"></span> anos de idade,
                 a jogar no Torneio pela Modalidade <span id="resModal" class="dado-preenchido"></span>
                 na Categoria <span id="resCategoria" class="dado-preenchido"></span>.
                 O Responsável <span id="resNomeR" class="dado-preenchido"></span> também autoriza o aluno(a)
                 a realizar a viagem esportiva promovida pela Federação Reginal para o Torneio Juvenil,
-                O aluno(a) autorizado(a) irá partir da cidade de <span id="resCidadeP" class="dado-preenchido"></span> 
+                O aluno(a) autorizado(a) irá partir da cidade de <span id="resCidadeP" class="dado-preenchido"></span>
                 com destino para a cidade de <span id="resCidadeD" class="dado-preenchido"></span>
             </p>
-            
+
             <p>
-                O não comparecimento na data estipulada poderá acarretar as sanções 
+                O não comparecimento na data estipulada poderá acarretar as sanções
                 previstas no Código de Processo Civil vigente.
             </p>
         </section>
 
-       
+
         <div id="areaAssinatura" class="ass">
             <canvas id="assinatura" width="400" height="150" style="border:1px solid #000;"></canvas>
             <br>
@@ -54,9 +100,9 @@
         </div>
 
         <div id="assinaturaFinal" style="display:none; text-align:center; margin-top:30px;">
-           <img id="imgAssinatura">
-           <div style="border-top:1px solid #000; width:250px; margin:10px auto;"></div>
- 
+            <img id="imgAssinatura">
+            <div style="border-top:1px solid #000; width:250px; margin:10px auto;"></div>
+
         </div>
         <h4>Assinatura do Responsável</h4>
 
@@ -66,7 +112,7 @@
     </article>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const urlParams = new URLSearchParams(window.location.search);
             const cpf = urlParams.get('cpfA');
             // Atribuição semântica dos dados capturados
@@ -78,56 +124,57 @@
             document.getElementById('resCidadeP').textContent = urlParams.get('cidadeP');
             document.getElementById('resCidadeD').textContent = urlParams.get('cidadeD');
             document.getElementById('resCategoria').textContent = urlParams.get('categoria');
-            
+
         }
 
         function formatarCPF(cpf) {
             cpf = cpf.replace(/\D/g, ''); // remove tudo que não é número
-            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, 
-              '$1.$2.$3-$4'
+            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/,
+                '$1.$2.$3-$4'
             );
         }
 
         const canvas = document.getElementById("assinatura");
-const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d");
 
-let desenhando = false;
+        let desenhando = false;
 
-canvas.addEventListener("mousedown", () => desenhando = true);
-canvas.addEventListener("mouseup", () => {
-    desenhando = false;
-    ctx.beginPath();
-});
+        canvas.addEventListener("mousedown", () => desenhando = true);
+        canvas.addEventListener("mouseup", () => {
+            desenhando = false;
+            ctx.beginPath();
+        });
 
-canvas.addEventListener("mousemove", function(e) {
-    if (!desenhando) return;
+        canvas.addEventListener("mousemove", function (e) {
+            if (!desenhando) return;
 
-    ctx.lineWidth = 2;
-    ctx.lineCap = "round";
+            ctx.lineWidth = 2;
+            ctx.lineCap = "round";
 
-    ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
-});
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        });
 
-function limpar() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
+        function limpar() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
 
-function confirmar() {
-    // pega a assinatura como imagem
-    const imagem = canvas.toDataURL();
+        function confirmar() {
+            // pega a assinatura como imagem
+            const imagem = canvas.toDataURL();
 
-    // coloca na área final
-    document.getElementById("imgAssinatura").src = imagem;
+            // coloca na área final
+            document.getElementById("imgAssinatura").src = imagem;
 
-    // esconde área de desenho
-    document.getElementById("areaAssinatura").style.display = "none";
+            // esconde área de desenho
+            document.getElementById("areaAssinatura").style.display = "none";
 
-    // mostra assinatura final
-    document.getElementById("assinaturaFinal").style.display = "block";
-}
+            // mostra assinatura final
+            document.getElementById("assinaturaFinal").style.display = "block";
+        }
     </script>
 </body>
+
 </html>
