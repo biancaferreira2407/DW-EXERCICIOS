@@ -1,87 +1,110 @@
 :root {
-    --cor-azul-claro: #a9c2dc;
-    --cor-preto: #000000;
-    --cor-cinza: #a8a8a8;
-    --cor-azulH: #000d6d;
-    --cor-azul-escuro: #083d75;
-    --cor-branco: #ffffff;
+    --azul: #0b3d91;
+    --azul-claro: #e6eef8;
+    --cinza: #6b6b6b;
+    --borda: #dcdcdc;
+    --erro: #d93025;
+    --sucesso: #188038;
 }
 
+/* BASE */
 body {
-    font-family: sans-serif;
-    background: var(--cor-azul-claro);
-    display: flex;
-    justify-content: center;
-    padding: 50px;
-    text-transform: uppercase;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--azul-claro);
 }
 
-main {
-    background: var(--cor-branco);
-    padding: 2rem;
+/* CONTAINER */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* CABEÇALHO */
+header {
+    border-bottom: 2px solid var(--azul);
+    margin-bottom: 20px;
 }
 
 header h1 {
-    margin-top: -10px;
-    font-size: 2rem;
-    color: var(--cor-preto);
-    margin-bottom: 1.5rem;
+    font-size: 22px;
+    color: var(--azul);
 }
 
+/* GRID */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* CAMPOS */
 .campo {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo.full {
+    grid-column: span 2;
 }
 
 label {
-    display: block;
-    margin-bottom: 0.3rem;
+    font-size: 13px;
     font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
 }
 
-
-button {
-    width: 100%;
-    padding: 10px;
-    background: var(--cor-azul-escuro);
-    color: var(--cor-branco);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: var(--cor-azulH);
-}
-
-select {
-    text-transform: uppercase;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-    text-align: center;
-    text-align-last: center;
-
-}
-
+/* INPUTS */
 input,
 select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #4d4d4d;
-    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.modal :focus{
+    background-color: var(--azul);
+}
+
+/* FOCO */
+input:focus,
+select:focus {
+    border-color: var(--azul);
+    outline: none;
+}
+
+
+/* ERRO */
+.input-erro {
+    border-color: var(--erro);
 }
 
 .erro {
-    color: red;
     font-size: 12px;
-    display: block;
+    color: var(--erro);
+    margin-top: 3px;
 }
 
-.input-erro {
-    border: 2px solid red;
+/* BOTÃO */
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: var(--azul);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #062c6b;
 }
