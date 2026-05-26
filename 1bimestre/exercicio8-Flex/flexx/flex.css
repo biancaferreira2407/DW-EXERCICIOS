@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: black;
+    font-family: sans-serif;
+    color: white;
+}
+
+img{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.l {
+    display: flex;
+    flex: 1;
+}
+
+.l1 .coluna{
+    flex: 1;
+}
+.l2 .coluna {
+    flex: 1;
+}
+
+/* L 3 */
+.l3 .coluna {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Só a coluna da esquerda da l 3 NÃO é flex */
+.l3 .coluna:nth-child(1) {
+    display: block;
+}
+
+/* L 4 */
+.l4 .coluna:nth-child(1) {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.l4 .coluna:nth-child(2) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.l4 .coluna:nth-child(1) {
+    display: flex;
+}
+
+/* Subcolunas */
+.l3 .coluna .subcoluna{
+    flex: 1;
+    height: 100%;
+}
+.l4 .coluna:nth-child(1) .subcoluna {
+    flex: 1;
+    height: 100%;
+}
+
+.l4 .coluna:nth-child(2) .subcoluna {
+    flex: 1;
+    width: 100%;
+}
+
+/* Cores */
+.l1 .coluna:nth-child(1) {
+    background: rgb(97, 28, 42);
+    flex-direction: column;
+}
+
+.l1 .coluna:nth-child(2) {
+    background: rgb(255, 0, 111);
+}
+
+.l2 .coluna:nth-child(1) {
+    background: rgba(179, 246, 44, 0.93);
+}
+
+.l2 .coluna:nth-child(2) {
+    background: rgb(53, 98, 244);
+}
+
+.l3 .coluna:nth-child(1) {
+    background: rgb(54, 229, 252);
+}
+
+.l3 .coluna:nth-child(2) .subcoluna:nth-child(1) {
+    background: #aa00ff;
+}
+
+.l3 .coluna:nth-child(2) .subcoluna:nth-child(2) {
+    background: #b200ca;
+}
+
+.l3 .coluna:nth-child(2) .subcoluna:nth-child(3) {
+    background: #34005a;
+}
+
+.l4 .coluna:nth-child(1) .subcoluna:nth-child(1) {
+    background: #943d15;
+}
+
+.l4 .coluna:nth-child(1) .subcoluna:nth-child(2) {
+    background: #000955;
+}
+
+.l4 .coluna:nth-child(2) .subcoluna:nth-child(1) {
+    background: #044d51;
+}
+
+.l4 .coluna:nth-child(2) .subcoluna:nth-child(2) {
+    background: #470000;
+}
+
+
+/* Centralização */
+.coluna,
+.subcoluna {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 1px solid white;
+}
