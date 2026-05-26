@@ -18,42 +18,30 @@
         <input type="text" id="inputPorta" placeholder="Digite a porta" value="3000">
         
         <hr> -->
-        <form id="formAluno" method="post" action="/enviar-dados" enctype="multipart/form-data">
-            <h2>Formulário com dados do aluno</h2>
+        <form id="formPessoa" method="post" action="/enviar-dados" enctype="multipart/form-data">
+            <h2>Formulário com dados</h2>
 
-            <label for="inputRA">RA:</label>
-            <input type="text" id="inputRA" name="ra" placeholder="Digite o RA do aluno">
+            <label for="inputCPF">CPF:</label>
+            <input type="text" id="inputCPF" name="cpf" placeholder="Digite seu CPF">
 
             <label for="inputNome">Nome:</label>
-            <input type="text" id="inputNome" name="nome" placeholder="Digite o nome do aluno">
+            <input type="text" id="inputNome" name="nome" placeholder="Digite seu nome">
 
-            <div class="notas-aluno">
-                <div class="nota-item">
-                    <label for="inputNota1">1º Bim:</label>
-                    <input type="text" id="inputNota1" name="nota1" placeholder="Nota 1">
-                </div>
-                <div class="nota-item">
-                    <label for="inputNota2">2º Bim:</label>
-                    <input type="text" id="inputNota2" name="nota2" placeholder="Nota 2">
-                </div>
-                <div class="nota-item">
-                    <label for="inputNota3">3º Bim:</label>
-                    <input type="text" id="inputNota3" name="nota3" placeholder="Nota 3">
-                </div>
-                <div class="nota-item">
-                    <label for="inputNota4">4º Bim:</label>
-                    <input type="text" id="inputNota4" name="nota4" placeholder="Nota 4">
-                </div>
-            </div>
+            <label for="inputPeso">Peso:</label>
+            <input type="text" id="inputPeso" name="peso" placeholder="Digite seu peso">
 
-            <label for="inputImagem">Selecione a Foto do Aluno:</label>
+            <label for="inputAltura">Altura:</label>
+            <input type="text" id="inputAltura" name="altura" placeholder="Digite sua altura">
+
+
+            <label for="inputImagem">Selecione sua Foto:</label>
             <input type="file" id="inputImagem" name="foto" accept="image/*" onchange="mostrarPreview(event)">
 
             <div class="preview-container">
                 <img id="previewImagem" alt="Preview da Foto do Aluno">
             </div>
 
-            <button type="button" onclick="enviarDadosAluno()">Enviar Dados do Aluno</button>
+            <button type="button" onclick="enviarDadosPessoa()">Enviar Dados do Aluno</button>
         </form>
 
         <h3>Resposta do servidor</h3>
@@ -81,30 +69,47 @@
         }
 
         // --- FUNÇÃO PARA ENVIAR DADOS COMPLETOS DO ALUNO ---
-        async function enviarDadosAluno() {
+        async function enviarDadosPessoa() {
             const enderecoServidor = 'localhost';
             const porta = '3000';
             const respostaDiv = document.getElementById("respostaImagem");
 
             // Coletando os dados do formulário
-            const ra = document.getElementById('inputRA').value;
+            const cpf = document.getElementById('inputCPF').value;
             const nome = document.getElementById('inputNome').value;
-            const nota1 = parseFloat(document.getElementById('inputNota1').value);
-            const nota2 = parseFloat(document.getElementById('inputNota2').value);
-            const nota3 = parseFloat(document.getElementById('inputNota3').value);
-            const nota4 = parseFloat(document.getElementById('inputNota4').value);
+            const peso = parseFloat(document.getElementById('inputPeso').value);
+            const altura = parseFloat(document.getElementById('inputAltura').value);
             const inputImagem = document.getElementById('inputImagem');
 
             // Validação dos campos
-            if (!ra || !nome) {
+            if (!cpf) {
                 respostaDiv.className = "resposta aviso";
-                respostaDiv.innerHTML = "Por favor, preencha o RA e o Nome do aluno!";
+                respostaDiv.innerHTML = "Por favor, preencha o CPF !";
+                document.getElementById('inputCPF').focus()
+                return;
+            }
+            if (!nome) {
+                respostaDiv.className = "resposta aviso";
+                respostaDiv.innerHTML = "Por favor, preencha o nome !";
+                document.getElementById('inputCPF').focus()
+                return;
+            }
+            if (!peso) {
+                respostaDiv.className = "resposta aviso";
+                respostaDiv.innerHTML = "Por favor, preencha o peso !";
+                document.getElementById('inputCPF').focus()
+                return;
+            }
+            if (!altura) {
+                respostaDiv.className = "resposta aviso";
+                respostaDiv.innerHTML = "Por favor, preencha o altura !";
+                document.getElementById('inputCPF').focus()
                 return;
             }
 
-            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)) {
+            if (isNaN(peso) || isNaN(altura)) {
                 respostaDiv.className = "resposta aviso";
-                respostaDiv.innerHTML = "Por favor, insira valores numéricos válidos para todas as notas bimestrais!";
+                respostaDiv.innerHTML = "Por favor, insira valores numéricos válidos para peso e altura!";
                 return;
             }
 
@@ -112,12 +117,10 @@
             // o formData é uma estrutura que facilita o envio de dados, incluindo arquivos, em requisições HTTP POST
             // analogia, é uma mala onde podemos colocar vários itens (dados do aluno e a foto) e enviar tudo de uma vez para o servidor
             const formData = new FormData();
-            formData.append('ra', ra);
+            formData.append('cpf', cpf);
             formData.append('nome', nome);
-            formData.append('nota1', nota1);
-            formData.append('nota2', nota2);
-            formData.append('nota3', nota3);
-            formData.append('nota4', nota4);
+            formData.append('peso', peso);
+            formData.append('altura', altura);
 
             if (inputImagem.files.length > 0) { // Verifica se um arquivo de imagem foi selecionado
                 formData.append('foto', inputImagem.files[0]);
@@ -125,9 +128,9 @@
 
             try {
                 respostaDiv.className = "resposta";
-                respostaDiv.innerHTML = "Enviando dados do aluno...";
+                respostaDiv.innerHTML = "Enviando dados...";
 
-                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-dados-aluno`, {
+                const response = await fetch(`http://${enderecoServidor}:${porta}/enviar-dados-pessoa`, {
                     method: 'POST',
                     body: formData
                 });
@@ -140,14 +143,14 @@
 
                 // Define a classe de sucesso (Verde) e atualiza o texto permanentemente
                 respostaDiv.className = "resposta sucesso";
-                respostaDiv.innerHTML = `<b>${data.mensagem}</b><br>Aluno: ${nome} (RA: ${ra})<br>Notas: ${nota1}, ${nota2}, ${nota3}, ${nota4}<br>Média: ${((nota1 + nota2 + nota3 + nota4) / 4).toFixed(2)}<br>${data.nomeArquivo ? 'Foto salva como: ' + data.nomeArquivo : 'Nenhuma foto enviada'}`;
+                respostaDiv.innerHTML = `<b>${data.mensagem}</b><br>Pessoa: ${nome} (CPF: ${cpf})<br>Peso: ${peso}<br>Altura: ${altura}<br>IMC: ${(peso / (altura**2)).toFixed(2)}<br>${data.nomeArquivo ? 'Foto salva como: ' + data.nomeArquivo : 'Nenhuma foto enviada'}`;
 
             
             } catch (error) {
                 console.error('Erro:', error);
                 // Define a classe de erro (Vermelho)
                 respostaDiv.className = "resposta erro";
-                respostaDiv.innerHTML = "Erro de comunicação: Não foi possível salvar os dados do aluno no servidor.";
+                respostaDiv.innerHTML = "Erro de comunicação: Não foi possível salvar os dados no servidor.";
             }
         }
     </script>

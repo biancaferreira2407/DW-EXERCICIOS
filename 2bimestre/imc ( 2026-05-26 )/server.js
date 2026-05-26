@@ -28,8 +28,8 @@ function definirDestino(req, file, callback) {
 function definirNomeArquivo(req, file, callback) {
     // Usa o RA do aluno como nome da imagem
     // Exemplo: 123.png
-    const ra = req.body.ra || 'sem-ra';
-    const nomeArquivo = ra + '.png';
+    const cpf = req.body.cpf || 'sem-cpf';
+    const nomeArquivo = cpf + '.png';
     callback(null, nomeArquivo);
 }
 
@@ -75,37 +75,44 @@ app.use(function (req, res, next) {
 // 3) Calcula a situação
 // 4) Retorna o resultado
 
-app.post('/enviar-dados-aluno', upload.single('foto'), function (req, res) {
+app.post('/enviar-dados-pessoa', upload.single('foto'), function (req, res) {
     try {
         // Dados recebidos do formulário
-        const ra = req.body.ra;
+        const cpf = req.body.cpf;
         const nome = req.body.nome;
 
-        const nota1 = parseFloat(req.body.nota1);
-        const nota2 = parseFloat(req.body.nota2);
-        const nota3 = parseFloat(req.body.nota3);
-        const nota4 = parseFloat(req.body.nota4);
+        const peso = parseFloat(req.body.peso);
+        const altura = parseFloat(req.body.altura);
 
-        if (!ra || !nome) {
+        if (!cpf || !nome) {
             return res.status(400).json({
-                erro: 'RA e nome são obrigatórios.'
+                erro: 'CPF e nome são obrigatórios.'
             });
         }
 
-        if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)
-        ) {
+        if (isNaN(peso) || isNaN(altura)) {
             return res.status(400).json({
-                erro: 'As notas devem ser numéricas.'
+                erro: 'Peso e Altura devem ser dados numéricos.'
             });
         }
-        const media = (nota1 + nota2 + nota3 + nota4) / 4;
+        const imc = peso / (altura**2);
         let situacao = '';
-        if (media >= 7) {
-            situacao = 'Aprovado';
-        } else if (media >= 5) {
-            situacao = 'Recuperação';
+        if (imc >= 40) {
+            situacao = 'obesidade III ( mórbida )';
+        } else if (imc >= 35) {
+            situacao = 'obesidade II';
+        } else if (imc >= 30) {
+            situacao = 'obesidade I';
+        } else if (imc >= 25) {
+            situacao = 'sobrepeso';
+        } else if (imc >= 18.5) {
+            situacao = 'saudavel';
+        } else if (imc >= 17) {
+            situacao = 'magreza leve';
+        } else if (imc >= 16) {
+            situacao = 'magreza moderada';
         } else {
-            situacao = 'Reprovado';
+            situacao = 'Magreza grave';
         }
 
         // -----------------------------------------
@@ -113,9 +120,9 @@ app.post('/enviar-dados-aluno', upload.single('foto'), function (req, res) {
         // -----------------------------------------
 
         console.log('--------------------------------');
-        console.log('Aluno:', nome);
-        console.log('RA:', ra);
-        console.log('Média:', media.toFixed(2));
+        console.log('Pessoa:', nome);
+        console.log('CPF:', cpf);
+        console.log('IMC:', imc.toFixed(2));
         console.log('Situação:', situacao);
 
         if (req.file) {
@@ -135,9 +142,9 @@ app.post('/enviar-dados-aluno', upload.single('foto'), function (req, res) {
                 ? req.file.filename
                 : null,
             aluno: {
-                ra: ra,
+                cpf: cpf,
                 nome: nome,
-                media: media.toFixed(2),
+                imc: imc.toFixed(2),
                 situacao: situacao
             }
         });
