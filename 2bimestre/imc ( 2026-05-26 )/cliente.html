@@ -22,16 +22,16 @@
             <h2>Formulário com dados</h2>
 
             <label for="inputCPF">CPF:</label>
-            <input type="text" id="inputCPF" name="cpf" placeholder="Digite seu CPF">
+            <input type="text" id="inputCPF" name="cpf" class="cpf" maxlength="11" placeholder="Digite seu CPF">
 
             <label for="inputNome">Nome:</label>
             <input type="text" id="inputNome" name="nome" placeholder="Digite seu nome">
 
             <label for="inputPeso">Peso:</label>
-            <input type="text" id="inputPeso" name="peso" placeholder="Digite seu peso">
+            <input type="text" id="inputPeso" name="peso" class="decimal" placeholder="Digite seu peso">
 
             <label for="inputAltura">Altura:</label>
-            <input type="text" id="inputAltura" name="altura" placeholder="Digite sua altura">
+            <input type="text" id="inputAltura" name="altura" class="decimal" placeholder="Digite sua altura">
 
 
             <label for="inputImagem">Selecione sua Foto:</label>
@@ -49,6 +49,57 @@
     </div>
 
     <script>
+
+        const inputCPF = document.getElementById("inputCPF");
+
+        inputCPF.addEventListener("input", function () {
+
+            // Remove tudo que não for número
+            this.value = this.value.replace(/\D/g, "");
+
+            // Limita em 11 dígitos
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11);
+            }
+
+        });
+
+        document.querySelectorAll(".decimal").forEach(input => {
+
+            input.addEventListener("input", function () {
+
+                let valor = this.value;
+
+                // Remove caracteres inválidos
+                valor = valor.replace(/[^0-9.]/g, "");
+
+                // Permite apenas um ponto
+                const partes = valor.split(".");
+
+                if (partes.length > 2) {
+                    valor = partes[0] + "." + partes[1];
+                }
+
+                // Máximo de 3 números antes do ponto
+                partes[0] = partes[0].slice(0, 3);
+
+                // Máximo de 2 números depois do ponto
+                if (partes[1] !== undefined) {
+                    partes[1] = partes[1].slice(0, 2);
+                    valor = partes[0] + "." + partes[1];
+                } else {
+                    valor = partes[0];
+                }
+
+                // Impede começar com ponto
+                if (valor.startsWith(".")) {
+                    valor = "";
+                }
+
+                this.value = valor;
+            });
+        });
+
         // Função que lê o arquivo local e exibe na tela antes/depois do upload
         function mostrarPreview(event) {
             const input = event.target;
@@ -82,6 +133,13 @@
             const inputImagem = document.getElementById('inputImagem');
 
             // Validação dos campos
+
+            if (cpf.length !== 11) {
+                respostaDiv.className = "resposta aviso";
+                respostaDiv.innerHTML = "CPF deve ter exatamente 11 dígitos!";
+                document.getElementById('inputCPF').focus();
+                return;
+            }
             if (!cpf) {
                 respostaDiv.className = "resposta aviso";
                 respostaDiv.innerHTML = "Por favor, preencha o CPF !";
@@ -91,19 +149,25 @@
             if (!nome) {
                 respostaDiv.className = "resposta aviso";
                 respostaDiv.innerHTML = "Por favor, preencha o nome !";
-                document.getElementById('inputCPF').focus()
+                document.getElementById('inputNome').focus()
                 return;
             }
-            if (!peso) {
+            if (nome.trim().split(/\s+/).length < 2) {
                 respostaDiv.className = "resposta aviso";
-                respostaDiv.innerHTML = "Por favor, preencha o peso !";
-                document.getElementById('inputCPF').focus()
+                respostaDiv.innerHTML = "Digite nome e sobrenome!";
+                document.getElementById('inputNome').focus();
                 return;
             }
-            if (!altura) {
+            if (!peso || peso<2.00 || peso>300.00) {
                 respostaDiv.className = "resposta aviso";
-                respostaDiv.innerHTML = "Por favor, preencha o altura !";
-                document.getElementById('inputCPF').focus()
+                respostaDiv.innerHTML = "Por favor, preencha o peso com um valor numérico válido!";
+                document.getElementById('inputPeso').focus()
+                return;
+            }
+            if (!altura || altura<0.40 || altura>2.30) {
+                respostaDiv.className = "resposta aviso";
+                respostaDiv.innerHTML = "Por favor, preencha o altura com um valor numérico válido!";
+                document.getElementById('inputAltura').focus()
                 return;
             }
 
@@ -143,9 +207,16 @@
 
                 // Define a classe de sucesso (Verde) e atualiza o texto permanentemente
                 respostaDiv.className = "resposta sucesso";
-                respostaDiv.innerHTML = `<b>${data.mensagem}</b><br>Pessoa: ${nome} (CPF: ${cpf})<br>Peso: ${peso}<br>Altura: ${altura}<br>IMC: ${(peso / (altura**2)).toFixed(2)}<br>${data.nomeArquivo ? 'Foto salva como: ' + data.nomeArquivo : 'Nenhuma foto enviada'}`;
+                respostaDiv.innerHTML = `
+                <b>${data.mensagem}</b><br>
+                Pessoa: ${nome} (CPF: ${cpf})<br>
+                Peso: ${peso}<br>
+                Altura: ${altura}<br>
+                IMC: ${(peso / (altura ** 2)).toFixed(2)}<br>
+                Situação: ${data.aluno.situacao}<br>
+                ${data.nomeArquivo ? 'Foto salva como: ' + data.nomeArquivo : 'Nenhuma foto enviada'}
+                `;
 
-            
             } catch (error) {
                 console.error('Erro:', error);
                 // Define a classe de erro (Vermelho)
@@ -153,6 +224,24 @@
                 respostaDiv.innerHTML = "Erro de comunicação: Não foi possível salvar os dados no servidor.";
             }
         }
+
+        const inputNome = document.getElementById("inputNome");
+
+        inputNome.addEventListener("input", function () {
+
+            // Remove tudo que não for letra ou espaço
+            let valor = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+
+            // Deixa tudo minúsculo
+            valor = valor.toLowerCase();
+
+            // Primeira letra de cada palavra maiúscula
+            valor = valor.replace(/\b\w/g, function (letra) {
+                return letra.toUpperCase();
+            });
+
+            this.value = valor;
+        });
     </script>
 </body>
 
