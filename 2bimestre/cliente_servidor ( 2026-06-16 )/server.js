@@ -107,7 +107,70 @@ const mensagemRecebida = req.body.mensagem
             }
         }
 
-        else if (mensagemRecebida === "TODAS") {
+        else if (mensagemRecebida === "TODAS AS CIDADES") {
+            try {
+
+                const query = `
+                SELECT
+                id_cidade,
+                nome_cidade
+                FROM public.cidade
+                `;
+
+                const result = await pool.query(query);
+
+                let mensagemResposta = "Cidades cadastradas:\n";
+
+                result.rows.forEach(cidade => {
+                    mensagemResposta += `${cidade.id_cidade} - ${cidade.nome_cidade}\n`;
+                });
+
+                return res.status(200).json({
+                    status: "sucesso",
+                    mensagem: mensagemResposta
+                });
+
+            } catch (erro) {
+                console.error(erro);
+                return res.status(500).json({
+                    status: "erro",
+                    mensagem: "Erro ao consultar as cidades"
+                });
+            }
+        }
+
+        else if (mensagemRecebida === "TODOS OS ESTADOS") {
+            try {
+
+                const query = `
+                SELECT
+                nome_estado, sigla_estado
+                FROM public.estado
+                `;
+
+                const result = await pool.query(query);
+
+                let mensagemResposta = "Estados cadastrados:\n";
+
+                result.rows.forEach(estado => {
+                    mensagemResposta += ` ${estado.sigla_estado} - ${estado.nome_estado}\n`;
+                });
+
+                return res.status(200).json({
+                    status: "sucesso",
+                    mensagem: mensagemResposta
+                });
+
+            } catch (erro) {
+                console.error(erro);
+                return res.status(500).json({
+                    status: "erro",
+                    mensagem: "Erro ao consultar os estados"
+                });
+            }
+        }
+
+        else if (mensagemRecebida === "TODAS AS CIDADES E ESTADOS") {
             try {
 
                 const query = `
@@ -123,7 +186,7 @@ const mensagemRecebida = req.body.mensagem
 
                 const result = await pool.query(query);
 
-                let mensagemResposta = "Cidades cadastradas:\n";
+                let mensagemResposta = "Cidades e Estados cadastrados:\n";
 
                 result.rows.forEach(cidade => {
                     mensagemResposta += `${cidade.id_cidade} - ${cidade.nome_cidade} - ${cidade.nome_estado}\n`;
@@ -138,7 +201,7 @@ const mensagemRecebida = req.body.mensagem
                 console.error(erro);
                 return res.status(500).json({
                     status: "erro",
-                    mensagem: "Erro ao consultar as cidades"
+                    mensagem: "Erro ao consultar"
                 });
             }
         }
@@ -196,7 +259,9 @@ app.listen(port, '0.0.0.0', () => {
     console.log(`Rota disponível:`);
     console.log(`  POST http://localhost:${port}/api/mensagens - Enviar`);
     console.log(`\nMensagens disponíveis (possíveis)`);
-    console.log(`  "todas"     -> Lista todas as cidades`);
+    console.log(`  "todas as cidades"     -> Lista todas as cidades`);
+    console.log(`  "todas os estados"     -> Lista todas os estados`);
+    console.log(`  "todas as cidades e estados"     -> Lista todas as cidades e estados`);
     console.log(`  "cidade X"  -> Consulta uma cidade`);
     console.log(`  "estado XX" -> Lista cidades do estado`);
     console.log(`  (outras)   -> Mensagem será verificada`);
