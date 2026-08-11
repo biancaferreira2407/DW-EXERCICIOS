@@ -1,0 +1,5 @@
+int;id;10
+String;nome;50
+String;modelo;50
+String;marca;50
+int;ano;10
