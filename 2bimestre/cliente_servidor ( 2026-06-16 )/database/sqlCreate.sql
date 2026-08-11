@@ -1,3 +1,5 @@
+
+
 CREATE EXTENSION IF NOT EXISTS unaccent;
 CREATE TABLE public.estado (
     sigla_estado CHAR(2) PRIMARY KEY,

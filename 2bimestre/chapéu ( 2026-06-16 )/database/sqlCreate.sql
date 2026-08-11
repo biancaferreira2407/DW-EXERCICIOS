@@ -1,3 +1,4 @@
+
 CREATE TABLE public.produto (
     id_produto SERIAL PRIMARY KEY,
     nome_produto VARCHAR(60) NOT NULL,
