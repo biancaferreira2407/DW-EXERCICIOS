@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos Realizados - CandyShop</title>
+    <link rel="stylesheet" href="./pedidosRealizados.css">
+</head>
+<body>
+    <header>
+        <h1>Pedidos Realizados</h1>
+        <p>Consulte os pedidos cadastrados na CandyShop.</p>
+    </header>
+
+    <main>
+        <section class="list-section">
+            <h2>Consulta de Pedidos</h2>
+
+            <div class="filtros">
+                <div class="form-group">
+                    <label for="buscar">Buscar:</label>
+                    <input type="text" id="buscar" placeholder="ID, cliente ou data...">
+                </div>
+                <button type="button" id="btnLimpar">Limpar</button>
+            </div>
+
+            <div class="table-container">
+                <table id="pedidosTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Cliente</th>
+                            <th>Funcionário</th>
+                            <th>Total</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pedidosTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistema CandyShop. Todos os direitos reservados.</p>
+    </footer>
+
+    <div id="messageContainer" class="message-container"></div>
+
+    <div id="modalDetalhes" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="tituloDetalhes">Pedido</h2>
+                <button type="button" id="btnFecharModal" class="btn-fechar">&times;</button>
+            </div>
+
+            <div id="detalhesPedido" class="detalhes-pedido"></div>
+        </div>
+    </div>
+
+    <script src="./pedidosRealizados.js" defer></script>
+</body>
+</html>

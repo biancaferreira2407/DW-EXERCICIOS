@@ -11,3 +11,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.warn('Aviso: Não foi possível conectar ao servidor backend em ' + URL_API);
     }
 });
+
+
+const btnPedidos = document.getElementById('btnPedidos');
+const submenuPedidos = document.getElementById('submenuPedidos');
+
+if (btnPedidos && submenuPedidos) {
+    btnPedidos.addEventListener('click', () => {
+        submenuPedidos.classList.toggle('aberto');
+        btnPedidos.classList.toggle('aberto');
+    });
+}

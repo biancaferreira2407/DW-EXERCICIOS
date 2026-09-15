@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const cargoController = require('../controllers/cargoController');
 
-// Rotas do CRUD de Unidades de Medida
-router.get('/listar', cargoController.listarCargo);
+// Rotas do CRUD de Cargos
+router.get('/listar', cargoController.listarCargos);
 router.get('/:id', cargoController.obterCargo);
 router.post('/', cargoController.criarCargo);
 router.put('/:id', cargoController.atualizarCargo);

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Pedido - CandyShop</title>
+    <link rel="stylesheet" href="./novoPedido.css">
+</head>
+
+<body>
+    <header>
+        <h1>Novo Pedido</h1>
+        <p>Cadastre um novo pedido da CandyShop.</p>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h2>Dados do Pedido</h2>
+
+            <div class="dados-pedido">
+                <div class="form-group id-pedido">
+                    <label for="id_pedido">ID do Pedido:</label>
+                    <input type="text" id="id_pedido" value="Gerado automaticamente" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="data_pedido">Data do Pedido:</label>
+                    <input type="date" id="data_pedido">
+                </div>
+
+                <div class="form-group">
+                    <label for="cliente_pessoa_cpf_pessoa">Cliente:</label>
+                    <select id="cliente_pessoa_cpf_pessoa">
+                        <option value="">Sem cliente cadastrado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="funcionario_pessoa_cpf_pessoa">Funcionário:</label>
+                    <select id="funcionario_pessoa_cpf_pessoa">
+                        <option value="">Selecione o funcionário</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Produtos do Pedido</h2>
+
+            <div class="adicionar-produto">
+                <div class="form-group produto-select">
+                    <label for="produto_id_produto">Produto:</label>
+                    <select id="produto_id_produto">
+                        <option value="">Carregando produtos...</option>
+                    </select>
+                </div>
+
+                <div class="form-group quantidade-produto">
+                    <label for="quantidade_produto">Quantidade:</label>
+                    <input type="number" id="quantidade_produto" min="1" value="1">
+                </div>
+
+                <button type="button" id="btnAdicionarProduto" class="btn-primary">Adicionar produto</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Subtotal</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="produtosTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total-pedido">
+                <span>Total do pedido:</span>
+                <strong id="valorTotalPedido">R$ 0,00</strong>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Pagamento</h2>
+
+            <div id="pagamentosContainer">
+                <div class="pagamento-item">
+                    <div class="form-group">
+                        <label>Forma de pagamento:</label>
+                        <select class="forma-pagamento">
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Valor pago:</label>
+                        <input type="number" class="valor-pago" min="0.01" step="0.01" placeholder="0,00">
+                    </div>
+
+                    <button type="button" class="btn-danger btn-remover-pagamento" style="display:none;">Remover</button>
+                </div>
+            </div>
+
+            <button type="button" id="btnAdicionarPagamento" class="btn-secondary">+ Adicionar outra forma</button>
+
+            <div class="resumo-pagamento">
+                <div>
+                    <span>Total do pedido:</span>
+                    <strong id="resumoTotalPedido">R$ 0,00</strong>
+                </div>
+                <div>
+                    <span>Total pago:</span>
+                    <strong id="totalPago">R$ 0,00</strong>
+                </div>
+                <div>
+                    <span>Restante:</span>
+                    <strong id="valorRestante">R$ 0,00</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="acoes-section">
+            <button type="button" id="btnSalvar" class="btn-save">Salvar pedido</button>
+            <button type="button" id="btnCancelar" class="btn-cancel">Cancelar</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistema CandyShop. Todos os direitos reservados.</p>
+    </footer>
+
+    <div id="messageContainer" class="message-container"></div>
+
+    <script src="./novoPedido.js" defer></script>
+</body>
+
+</html>

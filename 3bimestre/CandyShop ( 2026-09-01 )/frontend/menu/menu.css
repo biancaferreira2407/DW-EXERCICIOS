@@ -108,3 +108,53 @@ footer {
     margin-top: 2rem;
     font-size: 0.9rem;
 }
+
+.pedido-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.pedido-botao {
+    width: 100%;
+    font-family: inherit;
+    cursor: pointer;
+    position: relative;
+}
+
+.seta-pedido {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    transition: transform 0.3s;
+}
+
+.pedido-botao.aberto .seta-pedido {
+    transform: rotate(180deg);
+}
+
+.submenu-pedidos {
+    display: none;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 0.7rem;
+}
+
+.submenu-pedidos.aberto {
+    display: flex;
+}
+
+.submenu-pedidos a {
+    background-color: var(--cor-branco);
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 8px;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--cor-primaria);
+    text-align: center;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.submenu-pedidos a:hover {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+}

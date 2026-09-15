@@ -15,18 +15,17 @@ async function procurePorChavePrimaria(chave) {
 }
 
 async function procure() {
-    const id_cargo = document.getElementById("inputId_cargo").value.trim().toUpperCase();
-    if (!id_cargo || id_cargo.length > 3) {
-        mostrarAviso("O ID deve conter de 1 a 3 caracteres (ex: 1, 111).");
+    const id_cargo = parseInt(document.getElementById("inputId_cargo").value, 10);
+    if (isNaN(id_cargo)) {
+        mostrarAviso("O ID do Cargo não pode ser vazio e deve ser um número.");
         return;
     }
 
-    document.getElementById("inputId_cargo").value = id_cargo;
     cargo = await procurePorChavePrimaria(id_cargo);
     oQueEstaFazendo = '';
     
     if (cargo) {
-        mostrarDadosUnidade(cargo);
+        mostrarDadosCargo(cargo);
         visibilidadeDosBotoes('inline', 'none', 'inline', 'inline', 'none');
         mostrarAviso("Achou no banco, pode alterar ou excluir");
     } else {
@@ -58,19 +57,32 @@ function excluir() {
 }
 
 async function salvar() {
-    const id_cargo = document.getElementById("inputId_cargo").value.trim().toUpperCase();
-    const nome_cargo = document.getElementById("inputNome_cargo").value;
+    const id_cargo = parseInt(document.getElementById("inputId_cargo").value, 10);
+    const nome_cargo = document.getElementById("inputNome_cargo").value.trim();
 
-    const dadosUnidade = { id_cargo, nome_cargo };
+    if (isNaN(id_cargo)) {
+        mostrarAviso("O ID do cargo deve ser um número válido.");
+        return;
+    }
+
+    const dadosCargo = { id_cargo, nome_cargo };
 
     try {
         if (oQueEstaFazendo === 'inserindo') {
-            const resp = await fetch(`${URL_API}/cargo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dadosUnidade) });
+            const resp = await fetch(`${URL_API}/cargo`, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(dadosCargo) 
+            });
             const data = await resp.json();
             if (!data.sucesso) return mostrarAviso(data.mensagem);
             mostrarAviso("Inserido no Banco de Dados com sucesso!");
         } else if (oQueEstaFazendo === 'alterando') {
-            const resp = await fetch(`${URL_API}/cargo/${id_cargo}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dadosUnidade) });
+            const resp = await fetch(`${URL_API}/cargo/${id_cargo}`, { 
+                method: 'PUT', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(dadosCargo) 
+            });
             const data = await resp.json();
             if (!data.sucesso) return mostrarAviso(data.mensagem);
             mostrarAviso("Alterado no Banco de Dados com sucesso!");
@@ -96,14 +108,16 @@ async function salvar() {
 async function listar() {
     try {
         const resposta = await fetch(`${URL_API}/cargo/listar`);
+
+       
         const data = await resposta.json();
-        
+       // alert("teste "+stringify(dada))
         if (data.sucesso) {
             let texto = "";
             for (let linha of data.cargos) {
                 texto += `<b>[${linha.id_cargo}]</b> - ${linha.nome_cargo}<br>`;
             }
-            document.getElementById("outputSaida").innerHTML = texto || "Nenhuma unidade de medida cadastrada.";
+            document.getElementById("outputSaida").innerHTML = texto || "Nenhum cargo cadastrado.";
         } else {
             document.getElementById("outputSaida").innerHTML = `Erro no banco: ${data.mensagem}`;
         }
@@ -124,7 +138,7 @@ function mostrarAviso(mensagem) {
     document.getElementById("divAviso").innerHTML = mensagem;
 }
 
-function mostrarDadosUnidade(u) {
+function mostrarDadosCargo(u) {
     document.getElementById("inputId_cargo").value = u.id_cargo;
     document.getElementById("inputNome_cargo").value = u.nome_cargo;
     bloquearAtributos(true);

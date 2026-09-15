@@ -24,16 +24,35 @@
                 <p>Cadastrar, alterar, consultar e excluir produtos do estoque.</p>
             </a>
 
-            <a href="../unidade_medida/unidade_medida.html" class="card-menu">
+            <div class="pedido-menu">
+                <button type="button" class="card-menu pedido-botao" id="btnPedidos">
+                    <div class="card-icon">🛒</div>
+                    <h2>Pedidos</h2>
+                    <p>Gerenciar pedidos e vendas da loja.</p>
+                    <span class="seta-pedido">▼</span>
+                </button>
+
+                <div class="submenu-pedidos" id="submenuPedidos">
+                    <a href="../pedido/novoPedido/novoPedido.html">🛍️ Novo pedido</a>
+                    <a href="../pedido/pedidosRealizados/pedidosRealizados.html">📋 Pedidos realizados</a>
+                </div>
+            </div>
+
+            <a href="../cargo/cargo.html" class="card-menu">
+                <div class="card-icon">👔</div>
+                <h2>Cargos</h2>
+                <p>Gerenciar cargos disponíveis no sistema.</p>
+            </a>
+             <a href="../unidade_medida/unidade_medida.html" class="card-menu">
                 <div class="card-icon">📏</div>
                 <h2>Unidades de Medida</h2>
                 <p>Gerenciar unidades de medida utilizadas no sistema.</p>
             </a>
 
-            <a href="../cargo/cargo.html" class="card-menu">
-                <div class="card-icon">👔</div>
-                <h2>Cargos</h2>
-                <p>Gerenciar cargos cadastrados no sistema.</p>
+             <a href="../pessoa/pessoa.html" class="card-menu">
+                <div class="card-icon">👥</div>
+                <h2>Pessoas</h2>
+                <p>Gerenciar informações das pessoas cadastradas no sistema.</p>
             </a>
 
             <a href="../forma_pagamento/forma_pagamento.html" class="card-menu">
@@ -41,6 +60,7 @@
                 <h2>Formas de Pagamento</h2>
                 <p>Gerenciar formas de pagamento cadastradas no sistema.</p>
             </a>
+
         </div>
     </main>
 
